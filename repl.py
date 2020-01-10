@@ -13,6 +13,9 @@ def repl_print(line):
 def rep(line):
     return repl_print(repl_eval(repl_read(line)))
 
+def test_repl(line):
+    return repl(line)
+
 # start main code
 if __name__ == "__main__":
     while True:
