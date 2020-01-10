@@ -1,11 +1,14 @@
+import reader
+import printer
+
 def repl_read(line):
-    return line
+    return reader.read_str(line)
 
 def repl_eval(expr):
     return expr
 
 def repl_print(line):
-    return line
+    return printer.pr_str(line)
 
 def rep(line):
     return repl_print(repl_eval(repl_read(line)))
@@ -18,5 +21,3 @@ while True:
         break;
 
     print(rep(ln))
-
-
