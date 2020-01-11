@@ -12,34 +12,34 @@ class REPLTest(unittest.TestCase):
         pass
 
     def test0(self):
-        assert(repl.test_repl("(+ 1 2)") == "3")
+        assert(repl.repl("(+ 1 2)") == "3")
 
     def test1(self):
-        assert(repl.test_repl("(+ 5 (* 2 3))") == "11")
+        assert(repl.repl("(+ 5 (* 2 3))") == "11")
 
     def test2(self):
-        assert(repl.test_repl("(- (+ 5 (* 2 3)) 3)") == "8")
+        assert(repl.repl("(- (+ 5 (* 2 3)) 3)") == "8")
 
     def test3(self):
-        assert(repl.test_repl("(/ (- (+ 5 (* 2 3)) 3) 4)") == "2")
+        assert(repl.repl("(/ (- (+ 5 (* 2 3)) 3) 4)") == "2")
 
     def test4(self):
-        assert(repl.test_repl("(/ (- (+ 515 (* 87 311)) 302) 27)") == "1010")
+        assert(repl.repl("(/ (- (+ 515 (* 87 311)) 302) 27)") == "1010")
 
     def test5(self):
-        assert(repl.test_repl("(* -3 6)") == "-18")
+        assert(repl.repl("(* -3 6)") == "-18")
 
     def test6(self):
-        assert(repl.test_repl("(/ (- (+ 515 (* -87 311)) 296) 27)") == "-994")
+        assert(repl.repl("(/ (- (+ 515 (* -87 311)) 296) 27)") == "-994")
 
     def test7(self):
         try:
-            self.assertRaises(RuntimeError, repl.test_repl("(abc 1 2 3)"))
+            self.assertRaises(RuntimeError, repl.repl("(abc 1 2 3)"))
         except RuntimeError:
             pass
 
     def test8(self):
-        assert(repl.test_repl("()") == "()")
+        assert(repl.repl("()") == "()")
 
 if __name__ == "__main__":
     unittest.main()
