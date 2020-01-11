@@ -36,8 +36,8 @@ def repl_eval(ast, loop_env):
       else:
           ast = eval_ast(ast, loop_env)
           if callable(ast[0]):
-              # TODO: make num args variable
-              ast = ast[0](ast[1], ast[2])
+              # use first param as function name, rest of params as args
+              ast = ast[0](*ast[1:])
           else:
               raise RuntimeError("{} is not a function".format(ast[0]))
     else:
