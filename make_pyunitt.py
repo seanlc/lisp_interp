@@ -94,7 +94,14 @@ with open(newFileName, "w") as pf:
     testNumber = 0
     for inp, outp in zip(test_inputs, test_outputs):
         write_with_indent(pf, "def test{}(self):".format(testNumber), 1)
-        write_with_indent(pf, "assert(repl.test_repl(\"{}\") == \"{}\")".format(inp, outp), 2)
+        if outp == "+":
+            write_with_indent(pf, "try:", 2)
+            write_with_indent(pf, 
+                "self.assertRaises(RuntimeError, repl.test_repl(\"{}\"))".format(inp, outp), 3)
+            write_with_indent(pf, "except RuntimeError:", 2)
+            write_with_indent(pf, "pass", 3)
+        else:
+            write_with_indent(pf, "assert(repl.test_repl(\"{}\") == \"{}\")".format(inp, outp), 2)
         write_with_indent(pf, "", 0)
         testNumber += 1
 

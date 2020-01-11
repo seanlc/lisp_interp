@@ -32,8 +32,11 @@ class REPLTest(unittest.TestCase):
     def test6(self):
         assert(repl.test_repl("(/ (- (+ 515 (* -87 311)) 296) 27)") == "-994")
 
-#    def test7(self):
-#        assert(repl.test_repl("(abc 1 2 3)") == "+")
+    def test7(self):
+        try:
+            self.assertRaises(RuntimeError, repl.test_repl("(abc 1 2 3)"))
+        except RuntimeError:
+            pass
 
     def test8(self):
         assert(repl.test_repl("()") == "()")
