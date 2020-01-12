@@ -94,6 +94,7 @@ with open(newFileName, "w") as pf:
     testNumber = 0
     for inp, outp in zip(test_inputs, test_outputs):
         write_with_indent(pf, "def test{}(self):".format(testNumber), 1)
+
         if outp == "+":
             write_with_indent(pf, "try:", 2)
             write_with_indent(pf, 

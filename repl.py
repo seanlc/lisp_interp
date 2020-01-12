@@ -1,6 +1,22 @@
 import reader
 import printer
+import atexit
+import readline
+import os
 
+# setup history and command line editing
+hfile = ".lisp_history"
+
+try:
+    readline.read_history_file(hfile)
+    readline.set_history_length(100)
+except FileNotFoundError as e:
+    print(e)
+    sys.exit()
+
+atexit.register(readline.write_history_file, hfile)
+
+# basic env
 loop_env = {
     "+": lambda x,y: x + y,
     "-": lambda x,y: x - y,
@@ -23,9 +39,6 @@ def eval_ast(ast, env):
 
    return val
 
-def repl_read(line):
-    return reader.read_str(line)
-
 def apply_func(ast):
     if callable(ast[0]):
         # use first param as function name, rest of params as args
@@ -33,6 +46,9 @@ def apply_func(ast):
     else:
         raise RuntimeError("{} is not a function".format(ast[0]))
     return ast
+
+def repl_read(line):
+    return reader.read_str(line)
 
 def repl_eval(ast, loop_env):
     if isinstance(ast, list):
