@@ -12,76 +12,178 @@ class REPLTest(unittest.TestCase):
         pass
 
     def test0(self):
-        assert(repl.test_repl("1") == "1")
+        assert(repl.repl("1") == "1")
 
     def test1(self):
-        assert(repl.test_repl("7") == "7")
+        assert(repl.repl("7") == "7")
 
     def test2(self):
-        assert(repl.test_repl("  7   ") == "7")
+        assert(repl.repl("  7   ") == "7")
 
     def test3(self):
-        assert(repl.test_repl("-123") == "-123")
+        assert(repl.repl("-123") == "-123")
 
     def test4(self):
-        assert(repl.test_repl("+") == "+")
+        assert(repl.repl("+") == "+")
 
     def test5(self):
-        assert(repl.test_repl("abc") == "abc")
+        assert(repl.repl("abc") == "abc")
 
     def test6(self):
-        assert(repl.test_repl("   abc   ") == "abc")
+        assert(repl.repl("   abc   ") == "abc")
 
     def test7(self):
-        assert(repl.test_repl("abc5") == "abc5")
+        assert(repl.repl("abc5") == "abc5")
 
     def test8(self):
-        assert(repl.test_repl("abc-def") == "abc-def")
+        assert(repl.repl("abc-def") == "abc-def")
 
     def test9(self):
-        assert(repl.test_repl("-") == "-")
+        assert(repl.repl("-") == "-")
 
     def test10(self):
-        assert(repl.test_repl("-abc") == "-abc")
+        assert(repl.repl("-abc") == "-abc")
 
     def test11(self):
-        assert(repl.test_repl("->>") == "->>")
+        assert(repl.repl("->>") == "->>")
 
     def test12(self):
-        assert(repl.test_repl("(+ 1 2)") == "(+ 1 2)")
+        assert(repl.repl("(+ 1 2)") == "(+ 1 2)")
 
     def test13(self):
-        assert(repl.test_repl("()") == "()")
+        assert(repl.repl("()") == "()")
 
     def test14(self):
-        assert(repl.test_repl("( )") == "()")
+        assert(repl.repl("( )") == "()")
 
     def test15(self):
-        assert(repl.test_repl("(nil)") == "(nil)")
+        assert(repl.repl("(nil)") == "(nil)")
 
     def test16(self):
-        assert(repl.test_repl("((3 4))") == "((3 4))")
+        assert(repl.repl("((3 4))") == "((3 4))")
 
     def test17(self):
-        assert(repl.test_repl("(+ 1 (+ 2 3))") == "(+ 1 (+ 2 3))")
+        assert(repl.repl("(+ 1 (+ 2 3))") == "(+ 1 (+ 2 3))")
 
     def test18(self):
-        assert(repl.test_repl("  ( +   1   (+   2 3   )   )  ") == "(+ 1 (+ 2 3))")
+        assert(repl.repl("  ( +   1   (+   2 3   )   )  ") == "(+ 1 (+ 2 3))")
 
     def test19(self):
-        assert(repl.test_repl("(* 1 2)") == "(* 1 2)")
+        assert(repl.repl("(* 1 2)") == "(* 1 2)")
 
     def test20(self):
-        assert(repl.test_repl("(** 1 2)") == "(** 1 2)")
+        assert(repl.repl("(** 1 2)") == "(** 1 2)")
 
     def test21(self):
-        assert(repl.test_repl("(* -3 6)") == "(* -3 6)")
+        assert(repl.repl("(* -3 6)") == "(* -3 6)")
 
     def test22(self):
-        assert(repl.test_repl("(()())") == "(() ())")
+        assert(repl.repl("(()())") == "(() ())")
 
     def test23(self):
-        assert(repl.test_repl("(1 2, 3,,,,),,") == "(1 2 3)")
+        assert(repl.repl("(1 2, 3,,,,),,") == "(1 2 3)")
+
+    def test24(self):
+        assert(repl.repl("nil") == "nil")
+
+    def test25(self):
+        assert(repl.repl("true") == "true")
+
+    def test26(self):
+        assert(repl.repl("false") == "false")
+
+    def test27(self):
+        assert(repl.repl("\"abc\"") == "\"abc\"")
+
+    def test28(self):
+        assert(repl.repl("   \"abc\"   ") == "\"abc\"")
+
+    def test29(self):
+        assert(repl.repl("\"abc (with parens)\"") == "\"abc (with parens)\"")
+
+    def test30(self):
+        assert(repl.repl("\"abc\\\"def\"") == "\"abc\\\"def\"")
+
+    def test31(self):
+        assert(repl.repl("\"\"") == "\"\"")
+
+    def test32(self):
+        assert(repl.repl("\"\\\\\"") == "\"\\\\\"")
+
+    def test33(self):
+        assert(repl.repl("\"\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"") == "\"\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"")
+
+    def test34(self):
+        assert(repl.repl("\"&\"") == "\"&\"")
+
+    def test35(self):
+        assert(repl.repl("\"'\"") == "\"'\"")
+
+    def test36(self):
+        assert(repl.repl("\"(\"") == "\"(\"")
+
+    def test37(self):
+        assert(repl.repl("\")\"") == "\")\"")
+
+    def test38(self):
+        assert(repl.repl("\"*\"") == "\"*\"")
+
+    def test39(self):
+        assert(repl.repl("\"+\"") == "\"+\"")
+
+    def test40(self):
+        assert(repl.repl("\",\"") == "\",\"")
+
+    def test41(self):
+        assert(repl.repl("\"-\"") == "\"-\"")
+
+    def test42(self):
+        assert(repl.repl("\"/\"") == "\"/\"")
+
+    def test43(self):
+        assert(repl.repl("\":\"") == "\":\"")
+
+    def test44(self):
+        assert(repl.repl("\";\"") == "\";\"")
+
+    def test45(self):
+        assert(repl.repl("\"<\"") == "\"<\"")
+
+    def test46(self):
+        assert(repl.repl("\"=\"") == "\"=\"")
+
+    def test47(self):
+        assert(repl.repl("\">\"") == "\">\"")
+
+    def test48(self):
+        assert(repl.repl("\"?\"") == "\"?\"")
+
+    def test49(self):
+        assert(repl.repl("\"@\"") == "\"@\"")
+
+    def test50(self):
+        assert(repl.repl("\"[\"") == "\"[\"")
+
+    def test51(self):
+        assert(repl.repl("\"]\"") == "\"]\"")
+
+    def test52(self):
+        assert(repl.repl("\"^\"") == "\"^\"")
+
+    def test53(self):
+        assert(repl.repl("\"_\"") == "\"_\"")
+
+    def test54(self):
+        assert(repl.repl("\"`\"") == "\"`\"")
+
+    def test55(self):
+        assert(repl.repl("\"{\"") == "\"{\"")
+
+    def test56(self):
+        assert(repl.repl("\"}\"") == "\"}\"")
+
+    def test57(self):
+        assert(repl.repl("\"~\"") == "\"~\"")
 
 if __name__ == "__main__":
     unittest.main()

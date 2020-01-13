@@ -51,6 +51,8 @@ def repl_read(line):
     return reader.read_str(line)
 
 def repl_eval(ast, loop_env):
+    # uncomment below for step2 tests to pass
+    """
     if isinstance(ast, list):
       # do list stuff
       if len(ast) > 0:
@@ -58,6 +60,7 @@ def repl_eval(ast, loop_env):
           ast = apply_func(ast)
     else:
         ast = eval_ast(ast, loop_env)
+    """
     return ast
 
 def repl_print(line):
