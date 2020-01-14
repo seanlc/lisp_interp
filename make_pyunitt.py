@@ -14,13 +14,19 @@ with open("tests/{}".format(sys.argv[1])) as tf:
 
 line_list = read_data.split("\n")
 
+# indicates whether optional and deferrable test cases should be included
 optional = False
 deferrable = True
 test_inputs = []
 test_outputs = []
 
+# total number of tests that should be written
 test_read = 58
 
+# loop through all lines in mal test file and extract expected
+# inputs and outputs of test cases
+# Uses status of optional and deferrable vars to make descision
+# on whether these test cases should be included
 for ln in line_list:
     ln_len = len(ln)
     if ln_len == 0:
@@ -95,6 +101,9 @@ with open(newFileName, "w") as pf:
     for inp, outp in zip(test_inputs, test_outputs):
         write_with_indent(pf, "def test{}(self):".format(testNumber), 1)
 
+        # this block looks for backslashes and double quotes within the test
+        # inputs and outputs
+        # when found, it prepends a backslashto indicate literal interpretatopm
         puts = [inp, outp]
         for i, put in enumerate(puts):
             n = 0
