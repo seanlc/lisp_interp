@@ -23,6 +23,35 @@ class Reader:
     def peek(self):
         return self._get_curTok()
 
+def apply_seqs(line):
+    # apply escape sequences
+    num_chars = len(line)
+    del_chars = 0
+
+    for i in range(num_chars):
+        if i == num_chars-1 or i + del_chars == num_chars-1:
+            break
+
+        ch0 = line[i]
+        ch1 = line[i+1]
+
+        # /" -> "
+        if ch0 == "\\" and ch1 == "\"":
+            line = line[:i] + line[i+1:]
+            del_chars += 1
+
+        # \n -> (newline)
+        elif ch0 == "\\" and ch1 == "n":
+            line = line[:i] + "\n" +line[i+2:]
+            del_chars += 1
+
+        # \\ -> \
+        elif ch0 == "\\" and ch1 == "\\":
+            line = line[:i] + line[i+1:]
+            del_chars += 1
+
+    return line
+
 def read_str(input_str: str):
     toks = tokenize(input_str)
     rdr = Reader(toks)
