@@ -83,6 +83,9 @@ with open(newFileName, "w") as pf:
         write_with_indent(pf, "import {}".format(mod), 0)
     write_with_indent(pf, "", 0)
 
+    write_with_indent(pf, "err_str = \"expected: {} actual: {}\"", 0)
+    write_with_indent(pf, "", 0)
+
     # testClass
     write_with_indent(pf,"class REPLTest(unittest.TestCase):", 0)
 
@@ -128,7 +131,10 @@ with open(newFileName, "w") as pf:
             write_with_indent(pf, "except RuntimeError:", 2)
             write_with_indent(pf, "pass", 3)
         else:
-            write_with_indent(pf, "assert(repl.repl(\"{}\") == \"{}\")".format(inp, outp), 2)
+            write_with_indent(pf, "exp = \"{}\"".format(outp), 2)
+            write_with_indent(pf, "res = repl.repl(\"{}\")".format(inp), 2)
+            write_with_indent(pf, "assert(res == exp), \\".format(inp, outp), 2)
+            write_with_indent(pf, "err_str.format(exp, res)", 3)
         write_with_indent(pf, "", 0)
         testNumber += 1
 

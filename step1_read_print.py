@@ -4,6 +4,8 @@ import unittest
 import repl
 import printer
 
+err_str = "expected: {} actual: {}"
+
 class REPLTest(unittest.TestCase):
     def setUp(self):
         pass
@@ -12,178 +14,352 @@ class REPLTest(unittest.TestCase):
         pass
 
     def test0(self):
-        assert(repl.repl("1") == "1")
+        exp = "1"
+        res = repl.repl("1")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test1(self):
-        assert(repl.repl("7") == "7")
+        exp = "7"
+        res = repl.repl("7")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test2(self):
-        assert(repl.repl("  7   ") == "7")
+        exp = "7"
+        res = repl.repl("  7   ")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test3(self):
-        assert(repl.repl("-123") == "-123")
+        exp = "-123"
+        res = repl.repl("-123")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test4(self):
-        assert(repl.repl("+") == "+")
+        exp = "+"
+        res = repl.repl("+")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test5(self):
-        assert(repl.repl("abc") == "abc")
+        exp = "abc"
+        res = repl.repl("abc")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test6(self):
-        assert(repl.repl("   abc   ") == "abc")
+        exp = "abc"
+        res = repl.repl("   abc   ")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test7(self):
-        assert(repl.repl("abc5") == "abc5")
+        exp = "abc5"
+        res = repl.repl("abc5")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test8(self):
-        assert(repl.repl("abc-def") == "abc-def")
+        exp = "abc-def"
+        res = repl.repl("abc-def")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test9(self):
-        assert(repl.repl("-") == "-")
+        exp = "-"
+        res = repl.repl("-")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test10(self):
-        assert(repl.repl("-abc") == "-abc")
+        exp = "-abc"
+        res = repl.repl("-abc")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test11(self):
-        assert(repl.repl("->>") == "->>")
+        exp = "->>"
+        res = repl.repl("->>")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test12(self):
-        assert(repl.repl("(+ 1 2)") == "(+ 1 2)")
+        exp = "(+ 1 2)"
+        res = repl.repl("(+ 1 2)")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test13(self):
-        assert(repl.repl("()") == "()")
+        exp = "()"
+        res = repl.repl("()")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test14(self):
-        assert(repl.repl("( )") == "()")
+        exp = "()"
+        res = repl.repl("( )")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test15(self):
-        assert(repl.repl("(nil)") == "(nil)")
+        exp = "(nil)"
+        res = repl.repl("(nil)")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test16(self):
-        assert(repl.repl("((3 4))") == "((3 4))")
+        exp = "((3 4))"
+        res = repl.repl("((3 4))")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test17(self):
-        assert(repl.repl("(+ 1 (+ 2 3))") == "(+ 1 (+ 2 3))")
+        exp = "(+ 1 (+ 2 3))"
+        res = repl.repl("(+ 1 (+ 2 3))")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test18(self):
-        assert(repl.repl("  ( +   1   (+   2 3   )   )  ") == "(+ 1 (+ 2 3))")
+        exp = "(+ 1 (+ 2 3))"
+        res = repl.repl("  ( +   1   (+   2 3   )   )  ")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test19(self):
-        assert(repl.repl("(* 1 2)") == "(* 1 2)")
+        exp = "(* 1 2)"
+        res = repl.repl("(* 1 2)")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test20(self):
-        assert(repl.repl("(** 1 2)") == "(** 1 2)")
+        exp = "(** 1 2)"
+        res = repl.repl("(** 1 2)")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test21(self):
-        assert(repl.repl("(* -3 6)") == "(* -3 6)")
+        exp = "(* -3 6)"
+        res = repl.repl("(* -3 6)")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test22(self):
-        assert(repl.repl("(()())") == "(() ())")
+        exp = "(() ())"
+        res = repl.repl("(()())")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test23(self):
-        assert(repl.repl("(1 2, 3,,,,),,") == "(1 2 3)")
+        exp = "(1 2 3)"
+        res = repl.repl("(1 2, 3,,,,),,")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test24(self):
-        assert(repl.repl("nil") == "nil")
+        exp = "nil"
+        res = repl.repl("nil")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test25(self):
-        assert(repl.repl("true") == "true")
+        exp = "true"
+        res = repl.repl("true")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test26(self):
-        assert(repl.repl("false") == "false")
+        exp = "false"
+        res = repl.repl("false")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test27(self):
-        assert(repl.repl("\"abc\"") == "\"abc\"")
+        exp = "\"abc\""
+        res = repl.repl("\"abc\"")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test28(self):
-        assert(repl.repl("   \"abc\"   ") == "\"abc\"")
+        exp = "\"abc\""
+        res = repl.repl("   \"abc\"   ")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test29(self):
-        assert(repl.repl("\"abc (with parens)\"") == "\"abc (with parens)\"")
+        exp = "\"abc (with parens)\""
+        res = repl.repl("\"abc (with parens)\"")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test30(self):
-        assert(repl.repl("\"abc\\\"def\"") == "\"abc\\\"def\"")
+        exp = "\"abc\\\"def\""
+        res = repl.repl("\"abc\\\"def\"")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test31(self):
-        assert(repl.repl("\"\"") == "\"\"")
+        exp = "\"\""
+        res = repl.repl("\"\"")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test32(self):
-        assert(repl.repl("\"\\\\\"") == "\"\\\\\"")
+        exp = "\"\\\\\""
+        res = repl.repl("\"\\\\\"")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test33(self):
-        assert(repl.repl("\"\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"") == "\"\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"")
+        exp = "\"\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\""
+        res = repl.repl("\"\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test34(self):
-        assert(repl.repl("\"&\"") == "\"&\"")
+        exp = "\"&\""
+        res = repl.repl("\"&\"")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test35(self):
-        assert(repl.repl("\"'\"") == "\"'\"")
+        exp = "\"'\""
+        res = repl.repl("\"'\"")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test36(self):
-        assert(repl.repl("\"(\"") == "\"(\"")
+        exp = "\"(\""
+        res = repl.repl("\"(\"")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test37(self):
-        assert(repl.repl("\")\"") == "\")\"")
+        exp = "\")\""
+        res = repl.repl("\")\"")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test38(self):
-        assert(repl.repl("\"*\"") == "\"*\"")
+        exp = "\"*\""
+        res = repl.repl("\"*\"")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test39(self):
-        assert(repl.repl("\"+\"") == "\"+\"")
+        exp = "\"+\""
+        res = repl.repl("\"+\"")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test40(self):
-        assert(repl.repl("\",\"") == "\",\"")
+        exp = "\",\""
+        res = repl.repl("\",\"")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test41(self):
-        assert(repl.repl("\"-\"") == "\"-\"")
+        exp = "\"-\""
+        res = repl.repl("\"-\"")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test42(self):
-        assert(repl.repl("\"/\"") == "\"/\"")
+        exp = "\"/\""
+        res = repl.repl("\"/\"")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test43(self):
-        assert(repl.repl("\":\"") == "\":\"")
+        exp = "\":\""
+        res = repl.repl("\":\"")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test44(self):
-        assert(repl.repl("\";\"") == "\";\"")
+        exp = "\";\""
+        res = repl.repl("\";\"")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test45(self):
-        assert(repl.repl("\"<\"") == "\"<\"")
+        exp = "\"<\""
+        res = repl.repl("\"<\"")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test46(self):
-        assert(repl.repl("\"=\"") == "\"=\"")
+        exp = "\"=\""
+        res = repl.repl("\"=\"")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test47(self):
-        assert(repl.repl("\">\"") == "\">\"")
+        exp = "\">\""
+        res = repl.repl("\">\"")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test48(self):
-        assert(repl.repl("\"?\"") == "\"?\"")
+        exp = "\"?\""
+        res = repl.repl("\"?\"")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test49(self):
-        assert(repl.repl("\"@\"") == "\"@\"")
+        exp = "\"@\""
+        res = repl.repl("\"@\"")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test50(self):
-        assert(repl.repl("\"[\"") == "\"[\"")
+        exp = "\"[\""
+        res = repl.repl("\"[\"")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test51(self):
-        assert(repl.repl("\"]\"") == "\"]\"")
+        exp = "\"]\""
+        res = repl.repl("\"]\"")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test52(self):
-        assert(repl.repl("\"^\"") == "\"^\"")
+        exp = "\"^\""
+        res = repl.repl("\"^\"")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test53(self):
-        assert(repl.repl("\"_\"") == "\"_\"")
+        exp = "\"_\""
+        res = repl.repl("\"_\"")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test54(self):
-        assert(repl.repl("\"`\"") == "\"`\"")
+        exp = "\"`\""
+        res = repl.repl("\"`\"")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test55(self):
-        assert(repl.repl("\"{\"") == "\"{\"")
+        exp = "\"{\""
+        res = repl.repl("\"{\"")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test56(self):
-        assert(repl.repl("\"}\"") == "\"}\"")
+        exp = "\"}\""
+        res = repl.repl("\"}\"")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
     def test57(self):
-        assert(repl.repl("\"~\"") == "\"~\"")
+        exp = "\"~\""
+        res = repl.repl("\"~\"")
+        assert(res == exp), \
+            err_str.format(exp, res)
 
 if __name__ == "__main__":
     unittest.main()
