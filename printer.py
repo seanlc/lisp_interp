@@ -1,3 +1,16 @@
+def check_for_escs(mal_str, ch, i, m_len):
+    if ch == "\"" and i != 0 and i != m_len-1 or \
+       ch == "\\":
+        mal_str = mal_str[:i] + "\\" + mal_str[i:]
+    elif ch == "\n":
+        mal_str = mal_str[:i] + "\\n" + mal_str[i+1:]
+    else:
+        return mal_str, i, m_len
+
+    i += 1
+    m_len += 1
+    return mal_str, i, m_len
+
 def pr_str(mal, print_readably=False):
     mal_str = ""
 
@@ -16,17 +29,14 @@ def pr_str(mal, print_readably=False):
 
         if print_readably:
             # look for special chars
-            for i, ch in enumerate(mal):
+            i = 0
+            m_len = len(mal_str)
 
+            while i < m_len:
                 # rewrite special chars as escape sequences
-                if ch == "\"":
-                    mal_str = mal_str[:i] + "\\" + mal_str[i:]
-
-                if ch == "\n":
-                    mal_str = mal_str[:i] + "\\n" + mal_str[i+1:]
-
-                if ch == "\\":
-                    mal_str = mal_str[:i] + "\\" + mal_str[i:]
+                ch = mal_str[i]
+                (mal_str, i, m_len) = check_for_escs(mal_str, ch, i, m_len)
+                i += 1
 
 
     return mal_str

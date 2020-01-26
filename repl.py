@@ -64,8 +64,7 @@ def repl_eval(ast, loop_env):
     return ast
 
 def repl_print(line):
-    # TODO: change to true
-    return printer.pr_str(line, print_readably=False)
+    return printer.pr_str(line, print_readably=True)
 
 def repl(line):
     return repl_print(repl_eval(repl_read(line), loop_env))

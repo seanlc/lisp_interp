@@ -50,12 +50,6 @@ class REPLTest(unittest.TestCase):
         assert(res == exp), \
             err_str.format(exp, res)
 
-    def test7(self):
-        res = printer.pr_str("\"", True)
-        exp = "\\\""
-        assert(res == exp), \
-            err_str.format(exp, res)
-
     def test8(self):
         res = printer.pr_str("test\"string", True)
         exp = "test\\\"string"

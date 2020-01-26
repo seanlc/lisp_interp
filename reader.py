@@ -56,11 +56,8 @@ def read_str(input_str: str):
     toks = tokenize(input_str)
     rdr = Reader(toks)
     form = read_form(rdr)
-
-    # TODO: apply escape sequences and return new rep
-    #rep = apply_seqs(form)
-    #return rep
-
+    if isinstance(form,str):
+        form = apply_seqs(form)
     return form
 
 def tokenize(raw_str: str):
